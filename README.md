@@ -18,7 +18,7 @@ Dentro del proyecto se considera lo siguiente:
 ## Tipos de proyectos generados:
 * .ASP.NET (.NET Framework) MVC 5
 * .Proyecto de BD SQL Server
-	-Uso de Stored Procedures para consulta e inserción de la información.
+	* -Uso de Stored Procedures para consulta e inserción de la información.
 ---
 Para el proyecto, se consideró el siguiente diagrama ER
 
