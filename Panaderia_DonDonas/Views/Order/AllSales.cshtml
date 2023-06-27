@@ -1,0 +1,53 @@
+﻿@model List<Panaderia_DonDonas.Models.Order>
+
+@{
+    ViewBag.Title = "AllSales";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    
+}
+
+<div class="row" style="margin-top:30px">
+    <div class="col-sm-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h4>Total de ventas</h4>
+            </div>
+        </div>
+        <div class="panel-body">
+
+            
+
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nombre</th>
+                            <th>Dirección</th>
+                            <th>Dona</th>
+                            <th>Cantidad</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (Panaderia_DonDonas.Models.Order item in Model)
+                        {
+
+                            <tr>
+                                <td>@item.IdOrder</td>
+                                <td>@item.Name</td>
+                                <td>@item.Address</td>
+                                <td>@item.DonutFlavor</td>
+                                <td>@item.Number</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+

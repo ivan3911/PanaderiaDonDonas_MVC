@@ -1,0 +1,65 @@
+﻿@model List<Panaderia_DonDonas.Models.Order>
+
+@{
+    ViewBag.Title = "SalesByType";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+
+    List<SelectListItem> items = (List<SelectListItem>)ViewBag.items;
+}
+
+        <div class="row" style="margin-top:30px">
+            <div class="col-sm-12">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h4>Ventas mayores a 10 pzas</h4>
+                    </div>
+                </div>
+                <div class="panel-body">
+
+                   <form action="@Url.Action("SalesByType","Order")" method="post">
+                        <div class="form-group">
+                           
+                            <label>Tipo de Dona</label>
+                            @Html.DropDownList("TipoDona", items, "Selecciona una opción", new { @class = "form-control" })
+                           
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Mostrar resultados</button>
+                    </form>
+
+                    <hr />
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Nombre</th>
+                                    <th>Dirección</th>
+                                    <th>Dona</th>
+                                    <th>Cantidad</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (Panaderia_DonDonas.Models.Order item in Model)
+                                {
+
+                                    <tr>
+                                        <td>@item.IdOrder</td>
+                                        <td>@item.Name</td>
+                                        <td>@item.Address</td>
+                                        <td>@item.DonutFlavor</td>
+                                        <td>@item.Number</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+
+

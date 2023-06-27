@@ -1,0 +1,46 @@
+﻿
+@using Panaderia_DonDonas.Models
+
+@model Order
+
+@{
+    ViewBag.Title = "RecordSale";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    List<SelectListItem> items = (List<SelectListItem>)ViewBag.items;
+}
+
+
+<div class="row" style="margin-top:30px">
+    <div class="col-sm-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h4>Registro de venta</h4>
+            </div>
+            <div class="panel-body">
+
+                <form action="@Url.Action("RecordSale","Order")" method="post">
+                    <div class="form-group">
+                        <label>Nombre</label>
+                        <input type="text" class="form-control" name="Name" />
+
+                        <label>Dirección</label>
+                        <input type="text" class="form-control" name="Address" />
+
+                        <label>Tipo de Dona</label>
+                        @Html.DropDownListFor(m => m.EDonutFlavor,items, "Selecciona una opción", new { @class = "form-control" })
+
+                        <label>Cantidad</label>
+                        <input type="text" class="form-control" name="Number" />
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Registrar venta</button>
+                </form>
+
+            </div>
+        </div>
+
+
+    </div>
+
+</div>

@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DB_DonDonasModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Donuts">
+          <Key>
+            <PropertyRef Name="IdDonuts" />
+          </Key>
+          <Property Name="IdDonuts" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="donutFlavor" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Donuts_Orders">
+          <Key>
+            <PropertyRef Name="IdDonuts_Orders" />
+          </Key>
+          <Property Name="IdDonuts_Orders" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdOrder" Type="int" Nullable="false" />
+          <Property Name="IdDonuts" Type="int" Nullable="false" />
+          <Property Name="NumberOfDonuts" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="IdOrder" />
+          </Key>
+          <Property Name="IdOrder" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Donuts_Orders_Donuts">
+          <End Role="Donuts" Type="Self.Donuts" Multiplicity="1" />
+          <End Role="Donuts_Orders" Type="Self.Donuts_Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Donuts">
+              <PropertyRef Name="IdDonuts" />
+            </Principal>
+            <Dependent Role="Donuts_Orders">
+              <PropertyRef Name="IdDonuts" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Donuts_Orders_Orders">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
+          <End Role="Donuts_Orders" Type="Self.Donuts_Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="IdOrder" />
+            </Principal>
+            <Dependent Role="Donuts_Orders">
+              <PropertyRef Name="IdOrder" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DB_DonDonasModelStoreContainer">
+          <EntitySet Name="Donuts" EntityType="Self.Donuts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Donuts_Orders" EntityType="Self.Donuts_Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Donuts_Orders_Donuts" Association="Self.FK_Donuts_Orders_Donuts">
+            <End Role="Donuts" EntitySet="Donuts" />
+            <End Role="Donuts_Orders" EntitySet="Donuts_Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Donuts_Orders_Orders" Association="Self.FK_Donuts_Orders_Orders">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="Donuts_Orders" EntitySet="Donuts_Orders" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DB_DonDonasModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Donuts">
+          <Key>
+            <PropertyRef Name="IdDonuts" />
+          </Key>
+          <Property Name="IdDonuts" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="donutFlavor" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Donuts_Orders" Relationship="Self.FK_Donuts_Orders_Donuts" FromRole="Donuts" ToRole="Donuts_Orders" />
+        </EntityType>
+        <EntityType Name="Donuts_Orders">
+          <Key>
+            <PropertyRef Name="IdDonuts_Orders" />
+          </Key>
+          <Property Name="IdDonuts_Orders" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdOrder" Type="Int32" Nullable="false" />
+          <Property Name="IdDonuts" Type="Int32" Nullable="false" />
+          <Property Name="NumberOfDonuts" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Donuts" Relationship="Self.FK_Donuts_Orders_Donuts" FromRole="Donuts_Orders" ToRole="Donuts" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Donuts_Orders_Orders" FromRole="Donuts_Orders" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="IdOrder" />
+          </Key>
+          <Property Name="IdOrder" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Donuts_Orders" Relationship="Self.FK_Donuts_Orders_Orders" FromRole="Orders" ToRole="Donuts_Orders" />
+        </EntityType>
+        <Association Name="FK_Donuts_Orders_Donuts">
+          <End Role="Donuts" Type="Self.Donuts" Multiplicity="1" />
+          <End Role="Donuts_Orders" Type="Self.Donuts_Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Donuts">
+              <PropertyRef Name="IdDonuts" />
+            </Principal>
+            <Dependent Role="Donuts_Orders">
+              <PropertyRef Name="IdDonuts" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Donuts_Orders_Orders">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
+          <End Role="Donuts_Orders" Type="Self.Donuts_Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="IdOrder" />
+            </Principal>
+            <Dependent Role="Donuts_Orders">
+              <PropertyRef Name="IdOrder" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DB_DonDonasEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Donuts" EntityType="Self.Donuts" />
+          <EntitySet Name="Donuts_Orders" EntityType="Self.Donuts_Orders" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" />
+          <AssociationSet Name="FK_Donuts_Orders_Donuts" Association="Self.FK_Donuts_Orders_Donuts">
+            <End Role="Donuts" EntitySet="Donuts" />
+            <End Role="Donuts_Orders" EntitySet="Donuts_Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Donuts_Orders_Orders" Association="Self.FK_Donuts_Orders_Orders">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="Donuts_Orders" EntitySet="Donuts_Orders" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DB_DonDonasModelStoreContainer" CdmEntityContainer="DB_DonDonasEntities2">
+          <EntitySetMapping Name="Donuts">
+            <EntityTypeMapping TypeName="DB_DonDonasModel.Donuts">
+              <MappingFragment StoreEntitySet="Donuts">
+                <ScalarProperty Name="IdDonuts" ColumnName="IdDonuts" />
+                <ScalarProperty Name="donutFlavor" ColumnName="donutFlavor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Donuts_Orders">
+            <EntityTypeMapping TypeName="DB_DonDonasModel.Donuts_Orders">
+              <MappingFragment StoreEntitySet="Donuts_Orders">
+                <ScalarProperty Name="IdDonuts_Orders" ColumnName="IdDonuts_Orders" />
+                <ScalarProperty Name="IdOrder" ColumnName="IdOrder" />
+                <ScalarProperty Name="IdDonuts" ColumnName="IdDonuts" />
+                <ScalarProperty Name="NumberOfDonuts" ColumnName="NumberOfDonuts" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="DB_DonDonasModel.Orders">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="IdOrder" ColumnName="IdOrder" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

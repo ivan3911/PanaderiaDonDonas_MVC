@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33403.182
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Panaderia_DonDonas", "Panaderia_DonDonas\Panaderia_DonDonas.csproj", "{9923AC2A-52E2-4524-804A-C1522A176A73}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9923AC2A-52E2-4524-804A-C1522A176A73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9923AC2A-52E2-4524-804A-C1522A176A73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9923AC2A-52E2-4524-804A-C1522A176A73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9923AC2A-52E2-4524-804A-C1522A176A73}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C1006A02-8DB9-436B-BBD0-EEDF8DBC717A}
+	EndGlobalSection
+EndGlobal
