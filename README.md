@@ -22,7 +22,7 @@ Dentro del proyecto se considera lo siguiente:
 ---
 Para el proyecto, se consideró el siguiente diagrama ER
 
-   ![Diagrama ER](https://github.com/ivan3911/PanaderiaDonDonas_MVC/blob/main/assets/RegistroDeVenta.png)
+   ![Diagrama ER](https://github.com/ivan3911/PanaderiaDonDonas_MVC/blob/main/assets/DiagramaER_DonDonas.png)
 
 Funcionamiento:
 
